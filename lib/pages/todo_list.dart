@@ -151,13 +151,16 @@ class _TodoListState extends State<TodoList> {
                 child: const Text("Cancel")),
             TextButton(
               onPressed: () {
+                newTodoText = newTodoText.trim();
                 if (newTodoText.isNotEmpty) {
                   todoList.add(Todos(completed: false, text: newTodoText));
                 }
 
                 Navigator.of(context).pop();
 
-                _updateLocalData();
+                setState(() {
+                  _updateLocalData();
+                });
               },
               child: const Text('Add'),
             ),

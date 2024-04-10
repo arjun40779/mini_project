@@ -56,188 +56,186 @@ class _CalculatorState extends State<Calculator> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
-      padding: EdgeInsets.all(2 * SizeConfig.heightMultiplier),
-      alignment: Alignment.bottomLeft,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            padding: EdgeInsets.all(2 * SizeConfig.heightMultiplier),
-            alignment: Alignment.bottomRight,
-            child: Text(_displayValue,
-                style: textStyle(
-                    fontSize: 7 * SizeConfig.heightMultiplier,
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w400)),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CalculatorButton(
-                  text: "AC",
+    return Container(
+        padding: EdgeInsets.all(2 * SizeConfig.heightMultiplier),
+        alignment: Alignment.bottomLeft,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              padding: EdgeInsets.all(2 * SizeConfig.heightMultiplier),
+              alignment: Alignment.bottomRight,
+              child: Text(_displayValue,
+                  style: textStyle(
+                      fontSize: 7 * SizeConfig.heightMultiplier,
+                      color: AppColors.black,
+                      fontWeight: FontWeight.w400)),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CalculatorButton(
+                    text: "AC",
+                    onPressed: () {
+                      _onPressed("AC");
+                    },
+                    bgColor: AppColors.lightGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "+/-",
+                    onPressed: () {
+                      _onPressed("+/-");
+                    },
+                    bgColor: AppColors.lightGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "%",
+                    onPressed: () {
+                      _onPressed("%");
+                    },
+                    bgColor: AppColors.lightGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                  text: "÷",
                   onPressed: () {
-                    _onPressed("AC");
+                    _onPressed("/");
                   },
-                  bgColor: AppColors.lightGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "+/-",
+                  bgColor: AppColors.orange,
+                  textColor: AppColors.white,
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CalculatorButton(
+                    text: "7",
+                    onPressed: () {
+                      _onPressed("7");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "8",
+                    onPressed: () {
+                      _onPressed("8");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "9",
+                    onPressed: () {
+                      _onPressed("9");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                  text: "×",
                   onPressed: () {
-                    _onPressed("+/-");
+                    _onPressed("*");
                   },
-                  bgColor: AppColors.lightGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "%",
+                  bgColor: AppColors.orange,
+                  textColor: AppColors.white,
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CalculatorButton(
+                    text: "4",
+                    onPressed: () {
+                      _onPressed("4");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "5",
+                    onPressed: () {
+                      _onPressed("5");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "6",
+                    onPressed: () {
+                      _onPressed("6");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                  text: "-",
                   onPressed: () {
-                    _onPressed("%");
+                    _onPressed("-");
                   },
-                  bgColor: AppColors.lightGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                text: "÷",
-                onPressed: () {
-                  _onPressed("/");
-                },
-                bgColor: AppColors.orange,
-                textColor: AppColors.white,
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CalculatorButton(
-                  text: "7",
+                  bgColor: AppColors.orange,
+                  textColor: AppColors.white,
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CalculatorButton(
+                    text: "1",
+                    onPressed: () {
+                      _onPressed("1");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "2",
+                    onPressed: () {
+                      _onPressed("2");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: "3",
+                    onPressed: () {
+                      _onPressed("3");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                  text: "+",
                   onPressed: () {
-                    _onPressed("7");
+                    _onPressed("+");
                   },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "8",
+                  bgColor: AppColors.orange,
+                  textColor: AppColors.white,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CalculatorButton(
+                    text: "0",
+                    onPressed: () {
+                      _onPressed("0");
+                    },
+                    isCircleShape: false,
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                    text: ".",
+                    onPressed: () {
+                      _onPressed(".");
+                    },
+                    bgColor: AppColors.darkGrey,
+                    textColor: AppColors.white),
+                CalculatorButton(
+                  text: "=",
                   onPressed: () {
-                    _onPressed("8");
+                    _onPressed("=");
                   },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "9",
-                  onPressed: () {
-                    _onPressed("9");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                text: "×",
-                onPressed: () {
-                  _onPressed("*");
-                },
-                bgColor: AppColors.orange,
-                textColor: AppColors.white,
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CalculatorButton(
-                  text: "4",
-                  onPressed: () {
-                    _onPressed("4");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "5",
-                  onPressed: () {
-                    _onPressed("5");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "6",
-                  onPressed: () {
-                    _onPressed("6");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                text: "-",
-                onPressed: () {
-                  _onPressed("-");
-                },
-                bgColor: AppColors.orange,
-                textColor: AppColors.white,
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CalculatorButton(
-                  text: "1",
-                  onPressed: () {
-                    _onPressed("1");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "2",
-                  onPressed: () {
-                    _onPressed("2");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: "3",
-                  onPressed: () {
-                    _onPressed("3");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                text: "+",
-                onPressed: () {
-                  _onPressed("+");
-                },
-                bgColor: AppColors.orange,
-                textColor: AppColors.white,
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CalculatorButton(
-                  text: "0",
-                  onPressed: () {
-                    _onPressed("0");
-                  },
-                  isCircleShape: false,
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                  text: ".",
-                  onPressed: () {
-                    _onPressed(".");
-                  },
-                  bgColor: AppColors.darkGrey,
-                  textColor: AppColors.white),
-              CalculatorButton(
-                text: "=",
-                onPressed: () {
-                  _onPressed("=");
-                },
-                bgColor: AppColors.orange,
-                textColor: AppColors.white,
-              ),
-            ],
-          )
-        ],
-      ),
-    ));
+                  bgColor: AppColors.orange,
+                  textColor: AppColors.white,
+                ),
+              ],
+            )
+          ],
+        ));
   }
 }

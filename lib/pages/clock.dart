@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import '../theme/app_theme.dart';
 import '../theme/size_config.dart';
@@ -15,7 +16,9 @@ class ClockPage extends StatefulWidget {
 
 class _ClockPageState extends State<ClockPage> {
   final TextStyle _clockTextStyle = textStyle(
-      fontSize: 10 * SizeConfig.textMultiplier, color: AppColors.white);
+    fontSize: 10 * SizeConfig.textMultiplier,
+    color: AppColors.white,
+  );
   final EdgeInsets _containerPadding = EdgeInsets.symmetric(
     vertical: 7 * SizeConfig.heightMultiplier,
     horizontal: 12 * SizeConfig.widthMultiplier,
@@ -33,16 +36,17 @@ class _ClockPageState extends State<ClockPage> {
       BorderRadius.circular(SizeConfig.heightMultiplier * 5);
   final double _containerWidth = 90 * SizeConfig.widthMultiplier;
   final Color _appBarBackgroundColor = AppColors.black;
-  final Color _scafoldBackgroundColor = AppColors.darkGrey;
+  final Color _scaffoldBackgroundColor = AppColors.darkGrey;
   final TextStyle _textStyle = textStyle(color: AppColors.white);
   late Timer _timer;
   late DateTime _now;
   late String _formattedTime;
+  final GlobalKey _visibilityKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    _updateTime(); //
+    _updateTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       _updateTime();
     });
@@ -55,10 +59,12 @@ class _ClockPageState extends State<ClockPage> {
   }
 
   void _updateTime() {
-    setState(() {
-      _now = DateTime.now();
-      _formattedTime = DateFormat('hh:mm:ss a').format(_now);
-    });
+    if (mounted) {
+      setState(() {
+        _now = DateTime.now();
+        _formattedTime = DateFormat('hh:mm:ss a').format(_now);
+      });
+    }
   }
 
   @override
@@ -72,15 +78,32 @@ class _ClockPageState extends State<ClockPage> {
           style: _textStyle,
         ),
       ),
-      backgroundColor: _scafoldBackgroundColor,
-      body: Center(
+      backgroundColor: _scaffoldBackgroundColor,
+      body: VisibilityDetector(
+        key: _visibilityKey,
+        onVisibilityChanged: (visibilityInfo) {
+          if (visibilityInfo.visibleFraction == 0) {
+            _timer.cancel();
+          } else if (visibilityInfo.visibleFraction == 1) {
+            if (_timer.isActive == false) {
+              _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+                _updateTime();
+              });
+            }
+          }
+        },
+        child: Center(
           child: Container(
-              width: _containerWidth,
-              padding: _containerPadding,
-              decoration: BoxDecoration(
-                  borderRadius: _containerBorderRadius,
-                  gradient: _containerGradient),
-              child: Text(_formattedTime, style: _clockTextStyle))),
+            width: _containerWidth,
+            padding: _containerPadding,
+            decoration: BoxDecoration(
+              borderRadius: _containerBorderRadius,
+              gradient: _containerGradient,
+            ),
+            child: Text(_formattedTime, style: _clockTextStyle),
+          ),
+        ),
+      ),
     );
   }
 }

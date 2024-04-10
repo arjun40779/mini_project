@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 
+import '../theme/app_theme.dart';
 import 'calculator.dart';
 import 'clock.dart';
 import 'todo_list.dart';
-import '../theme/app_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,7 +38,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LazyLoadIndexedStack(
+      body: /*  Builder(
+        builder: (BuildContext context) {
+          switch (_currentIndex) {
+            case 0:
+              return Calculator(key: _calculator);
+            case 1:
+              return const ClockPage();
+            case 2:
+              return const TodoList();
+            default:
+              return const SizedBox();
+          }
+        },
+      ), */
+          LazyLoadIndexedStack(
         index: _currentIndex,
         children: [
           Navigator(
